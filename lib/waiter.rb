@@ -23,8 +23,7 @@ class Waiter
   def best_tipper
     tip_array = Customer.all.select{|customer| customer.waiters.include?(self)}
     tip_array = tip_array.collect{|customer| customer.meals}.flatten
-    tip_array = tip_array.collect{|meal| meal.tip}
-    tip_array.sort.first
+    tip_array = tip_array.sort{|a,b| b.tip <=> a.tip}.first
   end
   
 end
